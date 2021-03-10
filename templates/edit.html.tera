@@ -1,0 +1,11 @@
+{% extends "base" %}
+{% import "macros" as macros %}
+
+{% block drawer %}
+	{{ macros::list_posts(posts=drawer) }}
+{% endblock drawer %}
+
+{% block content %}
+	<script>let post_id = {{id}}</script>
+	{{ macros::edit_post(title=data.title,markdown=data.markdown, from=data.from_json, to=data.to_json) }}
+{% endblock content %}

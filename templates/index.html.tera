@@ -1,0 +1,11 @@
+{% extends "base" %}
+{% import "macros" as macros %}
+
+{% block content %}
+	{{ macros::index(post=main) }}
+	{{ macros::show_posts(posts=data) }}
+{% endblock content %}
+
+{% block drawer %}
+	{{ macros::list_posts(posts=data) }}
+{% endblock drawer %}

@@ -1,0 +1,92 @@
+{% macro list_posts(posts) %}
+	<div class="mdui-list">
+		{% for post in posts %} 
+			<a href="/post/{{ post.id }}" class="mdui-list-item mdui-ripple">{{ post.title }}</a>
+		{% endfor %}
+	</div>
+{% endmacro list_post %}
+
+{% macro show_posts(posts) %}
+	{% for post in posts %} 
+		<div class="mdui-card mdui-m-t-3">
+			<div class="mdui-card-primary">
+				<div class="mdui-card-primary-title">{{ post.title }}</div>
+				<div class="mdui-card-primary-subtitle">
+					{{ post.last_update | date(format="%Y-%m-%d %H:%M", timezone="Asia/Shanghai") }}
+					Post id: {{ post.id }}
+				</div>
+			</div>
+	
+			<div class="mdui-card-content preview-content">
+				{{ post.html | safe }}
+			</div>
+			 <div class="mdui-card-actions">
+				<a href="/post/{{ post.id }}" class="mdui-btn mdui-ripple">READ MORE</a>
+			 </div>
+		</div>
+	{% endfor %}
+{% endmacro show_post %}
+
+{% macro index(post) %}
+	<div class="article-content mdui-m-t-3">
+		{{ post.html | safe }}
+	</div>
+{% endmacro index %}
+
+{% macro show_post(post) %}
+	<div class="mdui-card mdui-m-t-3">
+		<div class="mdui-card-primary article-primary">
+			<div class="mdui-card-primary-title article-title">{{ post.title }}</div>
+			<div class="mdui-card-primary-subtitle article-subtitle">
+				{{ post.last_update | date(format="%Y-%m-%d %H:%M", timezone="Asia/Shanghai") }}
+				Post id: {{ post.id }}
+			</div>
+		</div>
+	
+		<div class="mdui-card-content article-content">
+			{{ post.html | safe }}
+		</div>
+	</div>
+
+	<div class="mdui-panel mdui-panel-gapless mdui-m-b-2 mdui-m-t-3" mdui-panel>
+		{% if post.from_list %}
+			<div class="mdui-panel-item mdui-panel-item-open">
+				<div class="mdui-panel-item-header">父条目</div>
+				    <div class="mdui-panel-item-body">
+						{% for current in post.from_list %}
+							<a class="mdui-p-a-1" title="Post id: {{ current.id }}" href="/post/{{ current.id }}">{{ current.title }}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		{% if post.to_list %}
+			<div class="mdui-panel-item mdui-panel-item-open">
+				<div class="mdui-panel-item-header">子条目</div>
+				    <div class="mdui-panel-item-body">
+						{% for current in post.to_list %}
+							<a class="mdui-p-a-1" title="Post id: {{ current.id }}" href="/post/{{ current.id }}">{{ current.title }}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	<div>
+{% endmacro show_post %}
+
+{% macro edit_post(title, markdown, from, to) %}
+	<div class="edit-block mdui-m-t-4 mdui-m-b-4">
+		<a href="./" class="mdui-btn mdui-btn-icon mdui-color-theme mdui-ripple mdui-m-b-3" title="返回"><i class="mdui-icon material-icons">arrow_back</i></a>
+		<br/>
+		Title: <pre id="editor-title">{{ title }}</pre>
+		Markdown: <pre id="editor-markdown">{{ markdown }}</pre>
+		<button id="preview-markdown" class="mdui-m-b-1 mdui-btn mdui-btn-block mdui-ripple">预览</button>
+		From List: <pre id="editor-from">{{ from }}</pre>
+		To List: <pre id="editor-to">{{ to }}</pre>
+		<button class="mdui-btn mdui-btn-block mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="editor-submit">Submit</button>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js"
+				integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" 
+				crossorigin="anonymous"></script>
+		<script type="module" src="/static/edit.js"></script>
+	</div>
+{% endmacro edit_post %}

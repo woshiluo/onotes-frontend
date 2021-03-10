@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+		<meta name="renderer" content="webkit"/>
+		<meta name="force-rendering" content="webkit"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+		<!-- MDUI CSS -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+			integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw"
+			crossorigin="anonymous"
+			/>
+		<link rel="stylesheet" href="/static/style.css" />
+		<!-- MDUI JavaScript -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+			integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+			crossorigin="anonymous"
+			></script>
+		<script
+			src="/static/cookies.js"
+			></script>
+		<script
+			src="/static/libs.js"
+			></script>
+		<title>{{ title }}</title>
+	</head>
+	<body class="mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue mdui-drawer-body-left">
+		<div class="mdui-drawer" id="main-drawer">
+			{% block drawer %}{% endblock drawer %}
+		</div>
+		<header>
+			<div class="mdui-appbar mdui-appbar-fixed">
+				<div class="mdui-toolbar mdui-color-theme">
+					<a mdui-drawer="{target: '#main-drawer'}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+					<a href="/" class="mdui-typo-headline">Notes</a>
+					<a href="#" class="mdui-typo-title">{{ title }}</a>
+					<div class="mdui-toolbar-spacer"></div>
+					<a id="new-post" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '新文章'}"><i class="mdui-icon material-icons">add</i></a>
+				</div>
+				<script> 
+					$('#new-post').on('click', async function(e) {
+						let id = await request( '/api/post', { title: "Title", markdown: "Content" }, 'PUT' );
+						if( id != undefined ) {
+							mdui.snackbar({
+								message: '创建成功',
+								buttonText: '跳转',
+								onButtonClick: function(){
+									window.location.href = `/post/${id}/edit`;
+								},
+							});
+						}
+					});
+				</script>
+			</div>
+		</header>
+		<main class="mdui-typo mdui-container">
+			{% block content %} {% endblock content %}
+		</main>
+		<script>
+			MathJax = {
+				tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+				svg: {fontCache: 'global'}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+	</body>
+</html>

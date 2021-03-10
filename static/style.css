@@ -1,0 +1,14 @@
+/* TODO: 你猜猜我什么时候上 sass？*/
+
+body {
+	background: #FAFAFA;
+}
+
+.preview-content {
+	max-height: 300px;
+	overflow: hidden;
+}
+
+li > checkbox {
+	vertical-align: middle;
+}
