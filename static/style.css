@@ -9,6 +9,6 @@ body {
 	overflow: hidden;
 }
 
-li > checkbox {
+li > input {
 	vertical-align: middle;
 }
