@@ -9,6 +9,7 @@ body {
 	overflow: hidden;
 }
 
-li > input {
-	vertical-align: middle;
+.article-content > ul > li > * {
+	    vertical-align: middle;
 }
+
