@@ -929,6 +929,7 @@ dependencies = [
 [[package]]
 name = "notes"
 version = "0.1.0"
+source = "git+https://git.nas.wsl/Onotes/notes#c972c877470e358de87d781eb6723c34e11a03a6"
 dependencies = [
  "bcrypt",
  "chrono",
