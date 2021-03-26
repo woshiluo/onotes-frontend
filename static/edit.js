@@ -62,4 +62,5 @@ $('#editor-submit').on('click', async function(e) {
 $('#preview-markdown').on('click', async function(e) {
 	let markdown = await parse( editor_markdown.getValue() );
 	mdui.dialog( { title: '预览', content: markdown, cssClass: 'mdui-typo' } );
+	MathJax.startup.defaultPageReady();
 });
