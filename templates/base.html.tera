@@ -46,9 +46,19 @@
 		<main class="mdui-typo mdui-container">
 			{% block content %} {% endblock content %}
 		</main>
-		<div class="mdui-fab-dial">
-			<button id="new-post" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '新文章'}"><i class="mdui-icon material-icons">add</i></button>
-			{% block fab %} {% endblock fab %}
+		<div class="mdui-fab-wrapper" id="post-fab" mdui-fab="{trigger: 'hover'}">
+			{% if data.id %}
+				<a href="/post/{{data.id}}/edit" class="mdui-fab mdui-ripple mdui-color-theme-accent">
+			{% else %}
+				<a href="/post/1/edit" class="mdui-fab mdui-ripple mdui-color-theme-accent">
+			{% endif %}
+				<i class="mdui-icon material-icons">menu</i>
+				<i class="mdui-icon mdui-fab-opened material-icons">edit</i>
+			</a>
+			<div class="mdui-fab-dial">
+				<button id="new-post" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '新文章'}"><i class="mdui-icon material-icons">add</i></button>
+				{% block fab %} {% endblock fab %}
+			</div>
 		</div>
 		<script> 
 			$('#new-post').on('click', async function(e) {

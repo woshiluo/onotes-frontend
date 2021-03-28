@@ -3,12 +3,6 @@
 
 {% block content %}
 	{{ macros::show_post(post=data) }}
-	<div class="mdui-fab-wrapper" id="post-fab" mdui-fab="{trigger: 'hover'}">
-		<a href="/post/{{data.id}}/edit" class="mdui-fab mdui-ripple mdui-color-theme-accent">
-			<i class="mdui-icon material-icons">add</i>
-			<i class="mdui-icon mdui-fab-opened material-icons">edit</i>
-		</a>
-	</div>
 {% endblock content %}
 
 {% block drawer %}
