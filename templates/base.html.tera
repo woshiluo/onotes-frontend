@@ -56,7 +56,7 @@
 				<i class="mdui-icon mdui-fab-opened material-icons">edit</i>
 			</a>
 			<div class="mdui-fab-dial">
-				<button id="new-post" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '新文章'}"><i class="mdui-icon material-icons">add</i></button>
+				<button id="new-post" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme" mdui-tooltip="{content: '新文章'}"><i class="mdui-icon material-icons">add</i></button>
 				{% block fab %} {% endblock fab %}
 			</div>
 		</div>
