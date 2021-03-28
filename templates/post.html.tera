@@ -9,9 +9,9 @@
 			<i class="mdui-icon mdui-fab-opened material-icons">edit</i>
 		</a>
 		<div class="mdui-fab-dial">
-			<button id="delete-post" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i class="mdui-icon material-icons">delete</i></button>
 		</div>
 	</div>
+	{{ macros::fab_button('<button id="delete-post" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i class="mdui-icon material-icons">delete</i></button>') }}
 	<script> 
 		$('#delete-post').on('click', async function(e) {
 			let result = request( `/api/post/{{data.id}}`, '', 'DELETE' );

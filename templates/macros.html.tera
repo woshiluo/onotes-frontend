@@ -90,3 +90,24 @@
 		<script type="module" src="/static/edit.js"></script>
 	</div>
 {% endmacro edit_post %}
+
+{% macro fab_button(addtional="") %}
+	<div class="mdui-fab-dial">
+		<button id="new-post" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '新文章'}"><i class="mdui-icon material-icons">add</i></button>
+		{{ addtional | safe }}
+	</div>
+	<script> 
+		$('#new-post').on('click', async function(e) {
+			let id = await request( '/api/post', { title: "Title", markdown: "Content" }, 'PUT' );
+			if( id != undefined ) {
+				mdui.snackbar({
+					message: '创建成功',
+					buttonText: '跳转',
+					onButtonClick: function(){
+						window.location.href = `/post/${id}/edit`;
+					},
+				});
+			}
+		});
+	</script>
+{% endmacro edit_post %}

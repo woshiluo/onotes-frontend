@@ -40,22 +40,7 @@
 					<a href="/" class="mdui-typo-headline">Notes</a>
 					<a href="#" class="mdui-typo-title">{{ title }}</a>
 					<div class="mdui-toolbar-spacer"></div>
-					<a id="new-post" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '新文章'}"><i class="mdui-icon material-icons">add</i></a>
 				</div>
-				<script> 
-					$('#new-post').on('click', async function(e) {
-						let id = await request( '/api/post', { title: "Title", markdown: "Content" }, 'PUT' );
-						if( id != undefined ) {
-							mdui.snackbar({
-								message: '创建成功',
-								buttonText: '跳转',
-								onButtonClick: function(){
-									window.location.href = `/post/${id}/edit`;
-								},
-							});
-						}
-					});
-				</script>
 			</div>
 		</header>
 		<main class="mdui-typo mdui-container">
