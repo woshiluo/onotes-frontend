@@ -4,7 +4,6 @@
 {% block content %}
 	{{ macros::index(post=main) }}
 	{{ macros::show_posts(posts=data) }}
-	{{ macros::fab_button() }}
 {% endblock content %}
 
 {% block drawer %}
