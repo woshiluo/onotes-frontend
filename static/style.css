@@ -9,7 +9,7 @@ body {
 	overflow: hidden;
 }
 
-.article-content > * > li > * {
+li > * {
 	    vertical-align: middle;
 }
 
