@@ -10,6 +10,6 @@ body {
 }
 
 li > * {
-    vertical-align: baseline;
+    vertical-align: baseline!important;
 }
 
