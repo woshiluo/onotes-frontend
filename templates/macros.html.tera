@@ -52,22 +52,20 @@
 		{% if post.from_list %}
 			<div class="mdui-panel-item mdui-panel-item-open">
 				<div class="mdui-panel-item-header">父条目</div>
-				    <div class="mdui-panel-item-body">
-						{% for current in post.from_list %}
-							<a class="mdui-p-a-1" title="Post id: {{ current.id }}" href="/post/{{ current.id }}">{{ current.title }}</a>
-						{% endfor %}
-					</div>
+				<div class="mdui-panel-item-body">
+					{% for current in post.from_list %}
+						<a class="mdui-p-a-1" title="Post id: {{ current.id }}" href="/post/{{ current.id }}">{{ current.title }}</a>
+					{% endfor %}
 				</div>
 			</div>
 		{% endif %}
 		{% if post.to_list %}
 			<div class="mdui-panel-item mdui-panel-item-open">
 				<div class="mdui-panel-item-header">子条目</div>
-				    <div class="mdui-panel-item-body">
-						{% for current in post.to_list %}
-							<a class="mdui-p-a-1" title="Post id: {{ current.id }}" href="/post/{{ current.id }}">{{ current.title }}</a>
-						{% endfor %}
-					</div>
+			    <div class="mdui-panel-item-body">
+					{% for current in post.to_list %}
+						<a class="mdui-p-a-1" title="Post id: {{ current.id }}" href="/post/{{ current.id }}">{{ current.title }}</a>
+					{% endfor %}
 				</div>
 			</div>
 		{% endif %}
