@@ -1,11 +1,11 @@
-import init, { parse_markdown } from '/static/markdown/wasm_markdown.js';
+import init, { parse_markdown } from '/static/libs/wasm-markdown-0.0.1/wasm_markdown.js';
 init();
 async function parse(x) {
  	await init();
 	return parse_markdown(x);
 }
 
-ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/');
+ace.config.set('basePath', '/static/libs/ace-builds-1.4.12');
 
 var editor_title = ace.edit("editor-title", {
 	theme: "ace/theme/tomorrow",

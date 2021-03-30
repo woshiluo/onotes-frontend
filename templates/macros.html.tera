@@ -82,9 +82,7 @@
 		From List: <pre id="editor-from">{{ from }}</pre>
 		To List: <pre id="editor-to">{{ to }}</pre>
 		<button class="mdui-btn mdui-btn-block mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="editor-submit">Submit</button>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js"
-				integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" 
-				crossorigin="anonymous"></script>
-		<script type="module" src="/static/edit.js"></script>
+		<script src="/static/libs/ace-builds-1.4.12/ace.js"></script>
+		<script type="module" src="/static/js/edit.js"></script>
 	</div>
 {% endmacro edit_post %}
