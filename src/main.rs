@@ -18,7 +18,7 @@ use crate::api::post::{delete_post, new_post, return_post, update_post};
 use crate::api::token::get_token;
 use crate::api::user::{register_user, return_user, update_user};
 use crate::routes::catch::not_found;
-use crate::routes::index::index;
+use crate::routes::index::{get_sw, index};
 use crate::routes::post::{edit_post, view_post};
 
 #[database("db")]
@@ -49,6 +49,7 @@ fn rocket() -> rocket::Rocket {
                 update_from_list,
                 update_to_list,
                 index,
+                get_sw,
                 view_post,
                 edit_post
             ],

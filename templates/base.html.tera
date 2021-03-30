@@ -12,8 +12,10 @@
 		<link rel="stylesheet" href="/static/style.css" />
 		<!-- MDUI JavaScript -->
 		<script src="/static/libs/mdui-1.0.2/js/mdui.min.js" ></script>
+
 		<script src="/static/js/cookies.js" ></script>
 		<script src="/static/js/libs.js" ></script>
+		<script src="/static/js/online.js" ></script>
 		<title>{{ title }}</title>
 	</head>
 	<body class="mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue mdui-drawer-body-left">
@@ -27,6 +29,7 @@
 					<a href="/" class="mdui-typo-headline">Notes</a>
 					<a href="#" class="mdui-typo-title">{{ title }}</a>
 					<div class="mdui-toolbar-spacer"></div>
+					<a id="online-status" href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">cloud_queue</i></a>
 				</div>
 			</div>
 		</header>

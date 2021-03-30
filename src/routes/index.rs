@@ -31,3 +31,10 @@ pub async fn index(conn: DbConn) -> Template {
     };
     Template::render("index", &context)
 }
+
+#[get("/sw.js")]
+pub async fn get_sw() -> rocket::response::NamedFile {
+    rocket::response::NamedFile::open("static/js/sw.js")
+        .await
+        .unwrap()
+}
