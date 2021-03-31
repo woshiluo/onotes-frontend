@@ -13,8 +13,9 @@
 		<!-- MDUI JavaScript -->
 		<script src="/static/libs/mdui-1.0.2/js/mdui.min.js" ></script>
 
-		<script src="/static/js/cookies.js" ></script>
+		<script src="/static/js/config.js" ></script>
 		<script src="/static/js/libs.js" ></script>
+		<script src="/static/js/cookies.js" ></script>
 		<script src="/static/js/online.js" ></script>
 		<title>{{ title }}</title>
 	</head>
@@ -70,6 +71,6 @@
 				svg: {fontCache: 'global'}
 			};
 		</script>
-		<script src="/static/libs/MathJax-3.1.2/es5/tex-svg.js"></script>
+		<script async src="/static/libs/MathJax-3.1.2/es5/tex-svg.js"></script>
 	</body>
 </html>

@@ -34,7 +34,7 @@ self.addEventListener('fetch', event => {
 			})
 		}
 		return fetch(event.request).then( response => {
-			return caches.open('cachefiles-v1').then( cache => {
+			return caches.open('cachefiles-v2').then( cache => {
 				cache.put(event.request, response.clone());
 				return response;
 			});
@@ -45,7 +45,7 @@ self.addEventListener('fetch', event => {
 });
 
 self.addEventListener('activate', function(event) {
-	var cacheWhitelist = ['cachefiles-v1', 'staticfiles-v1'];
+	var cacheWhitelist = ['cachefiles-v2', 'staticfiles-v2'];
 
 	event.waitUntil(
 		caches.keys().then(function(keyList) {

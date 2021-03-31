@@ -41,3 +41,41 @@ async function request( url, data, method='POST' ) {
 
 	return result.Ok;
 }
+
+
+ $( () => {
+	 $('main a').each( (idx,value) => {
+		 let href = $(value).prop('href');
+		 for( address of note_list ) {
+			 // Test notes
+			 let reg_note = new RegExp( address + "/post/(\\d+)$");
+			 if( reg_note.test(href) ) {
+				 $(value).html( 'Notes #' + href.match(reg_note)[1] );
+				 return ;
+			 }
+		 }
+		 for( address of git_list ) {
+			 // Test repo
+			 let reg_repo = new RegExp( address + "/([\\w-]+)/([\\w-]+)$");
+			 if( reg_repo.test(href) ) {
+				 let match_result = href.match(reg_repo);
+				 $(value).html( `${match_result[1]}/${match_result[2]}` );
+				 return ;
+			 }
+			 // Test Issue
+			 let reg_issue = new RegExp( address + "/([\\w-]+)/([\\w-]+)/issues/(\\d+)$");
+			 if( reg_issue.test(href) ) {
+				 let match_result = href.match(reg_issue);
+				 $(value).html( `${match_result[1]}/${match_result[2]} #${match_result[3]}` );
+				 return ;
+			 }
+			 // Test PR
+			 let reg_pull = new RegExp( address + "/([\\w-]+)/([\\w-]+)/pull/(\\d+)$");
+			 if( reg_pull.test(href) ) {
+				 let match_result = href.match(reg_pull);
+				 $(value).html( `${match_result[1]}/${match_result[2]} PR#${match_result[3]}` );
+				 return ;
+			 }
+		 }
+	 });
+ })

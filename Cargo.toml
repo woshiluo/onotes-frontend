@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 
 # Rocket Webserver
-rocket = { git = "https://github.com/SergioBenitez/Rocket" }
+rocket = { git = "https://github.com/SergioBenitez/Rocket", features = [ "tls" ] }
 rocket_contrib = { git = "https://github.com/SergioBenitez/Rocket",  features = ["json", "diesel_mysql_pool", "tera_templates"] }
 
 # Notes
