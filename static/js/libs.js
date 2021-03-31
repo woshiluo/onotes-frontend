@@ -45,7 +45,7 @@ async function request( url, data, method='POST' ) {
 
  $( () => {
 	 $('main a').each( (idx,value) => {
-		 let href = $(value).prop('href');
+		 let href = $(value).html();
 		 for( address of note_list ) {
 			 // Test notes
 			 let reg_note = new RegExp( address + "/post/(\\d+)$");
