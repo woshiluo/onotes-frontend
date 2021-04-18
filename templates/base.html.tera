@@ -8,10 +8,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
 		<!-- MDUI CSS -->
-		<link rel="stylesheet" href="/static/libs/mdui-1.0.2/css/mdui.min.css" />
+		<link rel="stylesheet" href="/static/libs/mdui/dist/css/mdui.min.css" />
 		<link rel="stylesheet" href="/static/style.css" />
 		<!-- MDUI JavaScript -->
-		<script src="/static/libs/mdui-1.0.2/js/mdui.min.js" ></script>
+		<script src="/static/libs/mdui/dist/js/mdui.min.js" ></script>
 
 		<script src="/static/js/config.js" ></script>
 		<script src="/static/js/libs.js" ></script>
