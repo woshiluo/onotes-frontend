@@ -82,7 +82,7 @@
 		From List: <pre id="editor-from">{{ from }}</pre>
 		To List: <pre id="editor-to">{{ to }}</pre>
 		<button class="mdui-btn mdui-btn-block mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="editor-submit">Submit</button>
-		<script src="/static/libs/ace-builds/ace.js"></script>
+		<script src="/static/libs/ace-builds/src-min-noconflict/ace.js"></script>
 		<script type="module" src="/static/js/edit.js"></script>
 	</div>
 {% endmacro edit_post %}

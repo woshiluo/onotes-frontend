@@ -5,7 +5,7 @@ async function parse(x) {
 	return parse_markdown(x);
 }
 
-ace.config.set('basePath', '/static/libs/ace-builds');
+ace.config.set('basePath', '/static/libs/ace-builds/src-min-noconflict');
 
 var editor_title = ace.edit("editor-title", {
 	theme: "ace/theme/tomorrow",
