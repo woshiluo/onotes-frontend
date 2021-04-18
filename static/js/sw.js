@@ -1,6 +1,6 @@
 this.addEventListener('install', function(event) {
 	event.waitUntil(
-		caches.open('staticfiles-v1').then(function(cache) {
+		caches.open('staticfiles-v2').then(function(cache) {
 			return cache.addAll([
 				'/static/libs/mdui-1.0.2/js/mdui.min.js',
 				'/static/libs/mdui-1.0.2/css/mdui.min.css',
@@ -9,12 +9,12 @@ this.addEventListener('install', function(event) {
 				'/static/libs/mdui-1.0.2/icons/material-icons/MaterialIcons-Regular.woff2',
 				'/static/libs/wasm-markdown-0.0.1/wasm_markdown.js',
 				'/static/libs/wasm-markdown-0.0.1/wasm_markdown_bg.wasm',
-				'/static/libs/MathJax-3.1.2/es5/tex-svg.js',
-				'/static/libs/ace-builds-1.4.12/ace.js',
-				'/static/libs/ace-builds-1.4.12/worker-json.js',
-				'/static/libs/ace-builds-1.4.12/theme-tomorrow.js',
-				'/static/libs/ace-builds-1.4.12/mode-markdown.js',
-				'/static/libs/ace-builds-1.4.12/mode-json.js',
+				'/static/libs/MathJax/es5/tex-svg.js',
+				'/static/libs/ace-builds/ace.js',
+				'/static/libs/ace-builds/worker-json.js',
+				'/static/libs/ace-builds/theme-tomorrow.js',
+				'/static/libs/ace-builds/mode-markdown.js',
+				'/static/libs/ace-builds/mode-json.js',
 				'/static/style.css',
 				'/static/js/libs.js',
 				'/static/js/cookies.js',
