@@ -1,13 +1,13 @@
 {% macro list_posts(posts) %}
 	<div class="mdui-list">
-		{% for post in posts %} 
+		{% for post in posts %}
 			<a href="/post/{{ post.id }}" class="mdui-list-item mdui-ripple">{{ post.title }}</a>
 		{% endfor %}
 	</div>
 {% endmacro list_post %}
 
 {% macro show_posts(posts) %}
-	{% for post in posts %} 
+	{% for post in posts %}
 		<div class="mdui-card mdui-m-t-3">
 			<div class="mdui-card-primary">
 				<div class="mdui-card-primary-title">{{ post.title }}</div>
@@ -16,7 +16,7 @@
 					Post id: {{ post.id }}
 				</div>
 			</div>
-	
+
 			<div class="mdui-card-content preview-content">
 				{{ post.html | safe }}
 			</div>
@@ -42,7 +42,7 @@
 				Post id: {{ post.id }}
 			</div>
 		</div>
-	
+
 		<div class="mdui-card-content article-content">
 			{{ post.html | safe }}
 		</div>
@@ -82,7 +82,7 @@
 		From List: <pre id="editor-from">{{ from }}</pre>
 		To List: <pre id="editor-to">{{ to }}</pre>
 		<button class="mdui-btn mdui-btn-block mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="editor-submit">Submit</button>
-		<script src="/static/libs/ace-builds-1.4.12/ace.js"></script>
+		<script src="/static/libs/ace-builds/ace.js"></script>
 		<script type="module" src="/static/js/edit.js"></script>
 	</div>
 {% endmacro edit_post %}

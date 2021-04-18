@@ -1,0 +1,9 @@
+[submodule "static/libs/prism"]
+	path = static/libs/prism
+	url = https://github.com/PrismJS/prism
+[submodule "static/libs/ace-builds"]
+	path = static/libs/ace-builds
+	url = https://github.com/ajaxorg/ace-builds/
+[submodule "static/libs/MathJax"]
+	path = static/libs/MathJax
+	url = https://github.com/mathjax/MathJax/

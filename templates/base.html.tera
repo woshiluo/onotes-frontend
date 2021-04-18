@@ -71,6 +71,6 @@
 				svg: {fontCache: 'global'}
 			};
 		</script>
-		<script async src="/static/libs/MathJax-3.1.2/es5/tex-svg.js"></script>
+		<script async src="/static/libs/MathJax/es5/tex-svg.js"></script>
 	</body>
 </html>
