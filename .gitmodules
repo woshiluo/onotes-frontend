@@ -7,3 +7,6 @@
 [submodule "static/libs/MathJax"]
 	path = static/libs/MathJax
 	url = https://github.com/mathjax/MathJax/
+[submodule "static/libs/mdui"]
+	path = static/libs/mdui
+	url = https://github.com/zdhxiong/mdui

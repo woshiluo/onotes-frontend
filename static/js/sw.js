@@ -2,11 +2,11 @@ this.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('staticfiles-v2').then(function(cache) {
 			return cache.addAll([
-				'/static/libs/mdui-1.0.2/js/mdui.min.js',
-				'/static/libs/mdui-1.0.2/css/mdui.min.css',
-				'/static/libs/mdui-1.0.2/fonts/roboto/Roboto-Medium.woff2',
-				'/static/libs/mdui-1.0.2/fonts/roboto/Roboto-Regular.woff2',
-				'/static/libs/mdui-1.0.2/icons/material-icons/MaterialIcons-Regular.woff2',
+				'/static/libs/mdui/dist/js/mdui.min.js',
+				'/static/libs/mdui/dist/css/mdui.min.css',
+				'/static/libs/mdui/dist/fonts/roboto/Roboto-Medium.woff2',
+				'/static/libs/mdui/dist/fonts/roboto/Roboto-Regular.woff2',
+				'/static/libs/mdui/dist/icons/material-icons/MaterialIcons-Regular.woff2',
 				'/static/libs/wasm-markdown-0.0.1/wasm_markdown.js',
 				'/static/libs/wasm-markdown-0.0.1/wasm_markdown_bg.wasm',
 				'/static/libs/MathJax/es5/tex-svg.js',
