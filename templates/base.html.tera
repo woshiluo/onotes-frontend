@@ -9,9 +9,12 @@
 
 		<!-- MDUI CSS -->
 		<link rel="stylesheet" href="/static/libs/mdui/dist/css/mdui.min.css" />
-		<link rel="stylesheet" href="/static/style.css" />
 		<!-- MDUI JavaScript -->
 		<script src="/static/libs/mdui/dist/js/mdui.min.js" ></script>
+
+		<link rel="stylesheet" href="/static/style.css" />
+		<link rel="stylesheet" href="/static/libs/prism/themes/prism.css" />
+		<link rel="stylesheet" href="/static/libs/prism/plugins/line-numbers/prism-line-numbers.css" />
 
 		<script src="/static/js/config.js" ></script>
 		<script src="/static/js/libs.js" ></script>
@@ -72,5 +75,10 @@
 			};
 		</script>
 		<script async src="/static/libs/MathJax/es5/tex-svg.js"></script>
+		<script src="/static/libs/prism/prism.js"></script>
+		<script src="/static/libs/prism/components/prism-core.min.js"></script>
+		<script src="/static/libs/prism/plugins/line-numbers/prism-line-numbers.min.js"></script>
+		<script src="/static/libs/prism/plugins/autoloader/prism-autoloader.min.js"></script>
+		<script>Prism.plugins.autoloader.languages_path = '/static/libs/prism/components/'</script>
 	</body>
 </html>
