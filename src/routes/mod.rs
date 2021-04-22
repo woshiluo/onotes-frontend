@@ -1,4 +1,5 @@
 pub mod catch;
+pub mod history;
 pub mod index;
 pub mod post;
 
@@ -64,21 +65,26 @@ impl PublicPost {
             title: post.get_title().to_string(),
             markdown: post.get_markdown().to_string(),
             html: parse_markdown(post.get_markdown()),
-            last_update: chrono::DateTime::<chrono::Utc>::from_utc(
-                chrono::NaiveDateTime::from_timestamp(
-                    match history {
-                        Some(x) => x.get_time(),
-                        _ => 0,
-                    } as i64,
-                    0,
-                ),
-                chrono::Utc,
-            )
-            .to_rfc3339(),
+            last_update: from_timestamp_to_rfc3339(history),
             from_list,
             to_list,
         }
     }
+}
+
+// TODO: refactor
+pub fn from_timestamp_to_rfc3339(history: Option<&notes::history::History>) -> String {
+    chrono::DateTime::<chrono::Utc>::from_utc(
+        chrono::NaiveDateTime::from_timestamp(
+            match history {
+                Some(x) => x.get_time(),
+                _ => 0,
+            } as i64,
+            0,
+        ),
+        chrono::Utc,
+    )
+    .to_rfc3339()
 }
 
 pub fn parse_markdown(raw_input: &str) -> String {

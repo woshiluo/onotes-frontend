@@ -8,7 +8,7 @@
 
 {% macro show_posts(posts) %}
 	{% for post in posts %}
-		<div class="mdui-card mdui-m-t-3">
+		<div class="mdui-typo mdui-card mdui-m-t-3">
 			<div class="mdui-card-primary">
 				<div class="mdui-card-primary-title">{{ post.title }}</div>
 				<div class="mdui-card-primary-subtitle">
@@ -25,16 +25,10 @@
 			 </div>
 		</div>
 	{% endfor %}
-{% endmacro show_post %}
-
-{% macro index(post) %}
-	<div class="article-content mdui-m-t-3">
-		{{ post.html | safe }}
-	</div>
-{% endmacro index %}
+{% endmacro show_posts %}
 
 {% macro show_post(post) %}
-	<div class="mdui-card mdui-m-t-3">
+	<div class="mdui-typo mdui-card mdui-m-t-3">
 		<div class="mdui-card-primary article-primary">
 			<div class="mdui-card-primary-title article-title">{{ post.title }}</div>
 			<div class="mdui-card-primary-subtitle article-subtitle">
@@ -48,7 +42,7 @@
 		</div>
 	</div>
 
-	<div class="mdui-panel mdui-panel-gapless mdui-m-b-2 mdui-m-t-3" mdui-panel>
+	<div class="mdui-panel mdui-typo mdui-panel-gapless mdui-m-b-2 mdui-m-t-3" mdui-panel>
 		{% if post.from_list %}
 			<div class="mdui-panel-item mdui-panel-item-open">
 				<div class="mdui-panel-item-header">父条目</div>
@@ -69,11 +63,11 @@
 				</div>
 			</div>
 		{% endif %}
-	<div>
+	</div>
 {% endmacro show_post %}
 
 {% macro edit_post(title, markdown, from, to) %}
-	<div class="edit-block mdui-m-t-4 mdui-m-b-4">
+	<div class="mdui-typo edit-block mdui-m-t-4 mdui-m-b-4">
 		<a href="./" class="mdui-btn mdui-btn-icon mdui-color-theme mdui-ripple mdui-m-b-3" title="返回"><i class="mdui-icon material-icons">arrow_back</i></a>
 		<br/>
 		Title: <pre id="editor-title">{{ title }}</pre>

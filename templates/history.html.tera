@@ -1,0 +1,30 @@
+{% extends "base" %}
+{% import "history_macros" as history_macros %}
+{% import "macros" as macros %}
+
+{% block content %}
+	<a href="../history" class="mdui-m-t-2 mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></a>
+	{{ history_macros::show_history(history=history, title=title) }}
+{% endblock content %}
+
+{% block drawer %}
+	{{ macros::list_posts(posts=drawer) }}
+{% endblock drawer %}
+
+{% block fab %}
+	<button id="delete-history" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i class="mdui-icon material-icons">delete</i></button>
+	<script> 
+		$('#delete-history').on('click', async function(e) {
+			let result = request( `/api/history/{{history.id}}`, '', 'DELETE' );
+			if( typeof(result) !== typeof(undefined) ) {
+				mdui.snackbar({
+					message: '删除成功',
+					buttonText: '回到首页',
+					onButtonClick: function(){
+						window.location.href = '/';
+					},
+				});
+			}
+		});
+	</script>
+{% endblock fab %}

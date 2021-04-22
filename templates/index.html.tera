@@ -2,7 +2,9 @@
 {% import "macros" as macros %}
 
 {% block content %}
-	{{ macros::index(post=main) }}
+	<div class="mdui-typo article-content mdui-m-t-3">
+		{{ main.html | safe }}
+	</div>
 	{{ macros::show_posts(posts=data) }}
 {% endblock content %}
 

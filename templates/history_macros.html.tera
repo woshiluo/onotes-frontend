@@ -1,0 +1,35 @@
+{% macro list_history(histories) %}
+	<ul class="mdui-list">
+		{% for history in histories %}
+			<li class="mdui-list-item mdui-ripple">
+			    <div class="mdui-list-item-content">
+					<div class="mdui-list-item-title mdui-list-item-one-line">
+						Time: {{ history.time | date(format="%Y-%m-%d %H:%M", timezone="Asia/Shanghai") }}
+					</div>
+					<div class="mdui-list-item-text mdui-list-item-one-line">
+						id: {{ history.id }}
+					</div>
+				</div>
+				<a href="/post/{{ history.post_id }}/history/{{ history.id }}">
+					<i class="mdui-list-item-icon mdui-icon material-icons">send</i>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endmacro list_history %}
+
+{% macro show_history(history, title) %}
+	<div class="mdui-card mdui-m-t-3">
+		<div class="mdui-card-primary article-primary">
+			<div class="mdui-card-primary-title article-title">{{ title }}</div>
+			<div class="mdui-card-primary-subtitle article-subtitle">
+				{{ history.time | date(format="%Y-%m-%d %H:%M", timezone="Asia/Shanghai") }}
+				Post id: {{ history.post_id }}
+			</div>
+		</div>
+
+		<div class="mdui-card-content article-content">
+			{{ history.html | safe }}
+		</div>
+	</div>
+{% endmacro show_history %}

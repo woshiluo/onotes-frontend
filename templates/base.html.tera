@@ -37,18 +37,21 @@
 				</div>
 			</div>
 		</header>
-		<main class="mdui-typo mdui-container">
+		<main class="mdui-container">
 			{% block content %} {% endblock content %}
 		</main>
 		<div class="mdui-fab-wrapper" id="post-fab" mdui-fab="{trigger: 'hover'}">
 			{% if data.id %}
 				<a href="/post/{{data.id}}/edit" class="mdui-fab mdui-ripple mdui-color-theme-accent">
+					<i class="mdui-icon material-icons">add</i>
+					<i class="mdui-icon mdui-fab-opened material-icons">edit</i>
+				</a>
 			{% else %}
-				<a href="/post/1/edit" class="mdui-fab mdui-ripple mdui-color-theme-accent">
+				<a href="/" class="mdui-fab mdui-ripple mdui-color-theme-accent">
+					<i class="mdui-icon material-icons">add</i>
+					<i class="mdui-icon mdui-fab-opened material-icons">home</i>
+				</a>
 			{% endif %}
-				<i class="mdui-icon material-icons">add</i>
-				<i class="mdui-icon mdui-fab-opened material-icons">edit</i>
-			</a>
 			<div class="mdui-fab-dial">
 				<button id="new-post" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-theme" mdui-tooltip="{content: '新笔记'}"><i class="mdui-icon material-icons">note_add</i></button>
 				{% block fab %} {% endblock fab %}

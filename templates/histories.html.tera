@@ -1,0 +1,15 @@
+{% extends "base" %}
+{% import "history_macros" as history_macros %}
+{% import "macros" as macros %}
+
+{% block content %}
+	<a href="./" class="mdui-m-t-2 mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></a>
+	{{ history_macros::list_history(histories=list) }}
+{% endblock content %}
+
+{% block drawer %}
+	{{ macros::list_posts(posts=drawer) }}
+{% endblock drawer %}
+
+{% block fab %}
+{% endblock fab %}
