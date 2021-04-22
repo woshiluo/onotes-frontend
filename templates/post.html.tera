@@ -10,7 +10,7 @@
 {% endblock drawer %}
 
 {% block fab %}
-	<a href="./history" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-yellow"><i class="mdui-icon material-icons">history</i></a>
+	<a href="/post/{{ data.id }}/history" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-yellow"><i class="mdui-icon material-icons">history</i></a>
 	<button id="delete-post" class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i class="mdui-icon material-icons">delete</i></button>
 	<script> 
 		$('#delete-post').on('click', async function(e) {
