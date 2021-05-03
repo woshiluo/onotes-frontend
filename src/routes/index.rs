@@ -38,3 +38,10 @@ pub async fn get_sw() -> rocket::response::NamedFile {
         .await
         .unwrap()
 }
+
+#[get("/login")]
+pub async fn login() -> Template {
+    let mut map = std::collections::HashMap::<String, String>::new();
+    map.insert("title".to_string(), "Login".to_string());
+    Template::render("login", map)
+}

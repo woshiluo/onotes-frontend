@@ -15,7 +15,7 @@ function alert_err(err) {
 }
 
 function run_result(data) {
-	console.log(typeof(data));
+	console.log(data);
 	if( typeof(data.Ok) === typeof(undefined) ) {
 		alert_err(data.Err);
 	}
