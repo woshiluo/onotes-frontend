@@ -14,7 +14,7 @@ struct PostContext {
 pub async fn view_post(conn: DbConn, id: u32) -> Template {
     let post_list = conn
         .run(|conn| -> Vec<TagPost> {
-            let list = notes::edge::Edge::get_to_list(&*conn, 1).unwrap();
+            let list = notes_lib::edge::Edge::get_to_list(&*conn, 1).unwrap();
             let mut post_list: Vec<TagPost> = vec![];
             for edge in list {
                 post_list.push(TagPost::from_id(&*conn, edge.get_to()));
@@ -51,7 +51,7 @@ struct EditContext {
 pub async fn edit_post(conn: DbConn, id: u32) -> Template {
     let post_list = conn
         .run(|conn| -> Vec<TagPost> {
-            let list = notes::edge::Edge::get_to_list(&*conn, 1).unwrap();
+            let list = notes_lib::edge::Edge::get_to_list(&*conn, 1).unwrap();
             let mut post_list: Vec<TagPost> = vec![];
             for edge in list {
                 post_list.push(TagPost::from_id(&*conn, edge.get_to()));
@@ -63,12 +63,12 @@ pub async fn edit_post(conn: DbConn, id: u32) -> Template {
 
     let current_post = conn
         .run(move |conn| {
-            let post = notes::post::Post::from_id(&*conn, id).unwrap();
+            let post = notes_lib::post::Post::from_id(&*conn, id).unwrap();
             StringContext {
                 title: post.get_title().to_string(),
                 markdown: post.get_markdown().to_string(),
                 to_json: serde_json::to_string(
-                    &notes::edge::Edge::get_to_list(&*conn, id)
+                    &notes_lib::edge::Edge::get_to_list(&*conn, id)
                         .unwrap()
                         .iter()
                         .map(|x| x.get_to())
@@ -76,7 +76,7 @@ pub async fn edit_post(conn: DbConn, id: u32) -> Template {
                 )
                 .unwrap(),
                 from_json: serde_json::to_string(
-                    &notes::edge::Edge::get_from_list(&*conn, id)
+                    &notes_lib::edge::Edge::get_from_list(&*conn, id)
                         .unwrap()
                         .iter()
                         .map(|x| x.get_from())

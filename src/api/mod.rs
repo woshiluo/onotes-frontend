@@ -4,4 +4,4 @@ pub mod post;
 pub mod token;
 pub mod user;
 
-type NoteError<E> = Result<E, notes::NoteError>;
+type NoteError<E> = Result<E, notes_lib::NoteError>;

@@ -1,6 +1,6 @@
-use notes::auth::{Auth, AuthUser};
-use notes::user::User;
-use rocket_contrib::json::Json;
+use notes_lib::auth::{Auth, AuthUser};
+use notes_lib::user::User;
+use rocket::serde::json::Json;
 use serde::{Deserialize, Serialize};
 
 use std::convert::TryFrom;
@@ -32,11 +32,11 @@ pub struct UpdateUser {
 pub async fn update_user(conn: DbConn, id: u32, data: Json<UpdateUser>) -> Json<NoteError<()>> {
     Json(
         conn.run(move |conn| -> NoteError<()> {
-            use notes::auth::AuthUpdate;
+            use notes_lib::auth::AuthUpdate;
             let data = data.into_inner();
             let auth = data.auth;
             let user = data.data;
-            let user = notes::user::User::new(Some(id), user.nickname, user.password, user.email);
+            let user = notes_lib::user::User::new(Some(id), user.nickname, user.password, user.email);
 
             let authuser = AuthUser::try_from((auth, &*conn))?;
             user.update(conn, &authuser)?;
@@ -66,7 +66,7 @@ pub async fn return_user(conn: DbConn, id: u32) -> Json<NoteError<ReturnUser>> {
 
 impl From<NewUser> for User {
     fn from(user: NewUser) -> User {
-        notes::user::User::new(None, user.nickname, user.password, user.email)
+        notes_lib::user::User::new(None, user.nickname, user.password, user.email)
     }
 }
 

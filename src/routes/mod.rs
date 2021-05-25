@@ -3,7 +3,7 @@ pub mod history;
 pub mod index;
 pub mod post;
 
-use notes::post::Post;
+use notes_lib::post::Post;
 
 #[derive(serde::Serialize)]
 pub struct TagPost {
@@ -45,18 +45,18 @@ impl PublicPost {
     pub fn from_id(conn: &diesel::MysqlConnection, id: u32) -> PublicPost {
         let post = Post::from_id(conn, id).unwrap();
 
-        let from_list = notes::edge::Edge::get_from_list(conn, id)
+        let from_list = notes_lib::edge::Edge::get_from_list(conn, id)
             .unwrap()
             .iter()
             .map(|x| TagPost::from(&Post::from_id(conn, x.get_from()).unwrap()))
             .collect();
-        let to_list = notes::edge::Edge::get_to_list(conn, id)
+        let to_list = notes_lib::edge::Edge::get_to_list(conn, id)
             .unwrap()
             .iter()
             .map(|x| TagPost::from(&Post::from_id(conn, x.get_to()).unwrap()))
             .collect();
 
-        let mut history_list = notes::history::History::get_history(id, conn).unwrap();
+        let mut history_list = notes_lib::history::History::get_history(id, conn).unwrap();
         history_list.sort_by_key(|x| x.get_time());
         let history = history_list.last();
 
@@ -73,7 +73,7 @@ impl PublicPost {
 }
 
 // TODO: refactor
-pub fn from_timestamp_to_rfc3339(history: Option<&notes::history::History>) -> String {
+pub fn from_timestamp_to_rfc3339(history: Option<&notes_lib::history::History>) -> String {
     chrono::DateTime::<chrono::Utc>::from_utc(
         chrono::NaiveDateTime::from_timestamp(
             match history {

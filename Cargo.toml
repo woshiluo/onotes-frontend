@@ -9,11 +9,11 @@ edition = "2018"
 [dependencies]
 
 # Rocket Webserver
-rocket = { git = "https://github.com/SergioBenitez/Rocket", features = [ "tls" ] }
-rocket_contrib = { git = "https://github.com/SergioBenitez/Rocket",  features = ["json", "diesel_mysql_pool", "tera_templates"] }
+rocket = { git = "https://github.com/SergioBenitez/Rocket", features = [ "tls", "json" ] }
+rocket_contrib = { git = "https://github.com/SergioBenitez/Rocket",  features = ["diesel_mysql_pool", "tera_templates"] }
 
 # Notes
-notes = { git = "https://git.nas.wsl/Onotes/notes" }
+notes-lib = { git = "https://git.nas.wsl/Onotes/notes-lib" }
 
 # Diesel for SQL
 diesel = { version = "1.4.4", features = ["mysql"] }

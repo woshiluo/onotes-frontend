@@ -1,3 +1,4 @@
+use rocket::fs::NamedFile;
 use rocket_contrib::templates::Template;
 
 use super::PublicPost;
@@ -13,7 +14,7 @@ struct IndexContext {
 pub async fn index(conn: DbConn) -> Template {
     let post_list = conn
         .run(|conn| -> Vec<PublicPost> {
-            let list = notes::edge::Edge::get_to_list(&*conn, 1).unwrap();
+            let list = notes_lib::edge::Edge::get_to_list(&*conn, 1).unwrap();
             let mut post_list: Vec<PublicPost> = vec![];
             for edge in list {
                 post_list.push(PublicPost::from_id(&*conn, edge.get_to()));
@@ -33,10 +34,17 @@ pub async fn index(conn: DbConn) -> Template {
 }
 
 #[get("/sw.js")]
-pub async fn get_sw() -> rocket::response::NamedFile {
-    rocket::response::NamedFile::open("static/js/sw.js")
+pub async fn get_sw() -> rocket::fs::NamedFile {
+    rocket::fs::NamedFile::open("static/js/sw.js")
         .await
         .unwrap()
+}
+
+#[get("/static/<file..>")]
+pub async fn static_files(file: std::path::PathBuf) -> Option<NamedFile> {
+    NamedFile::open(std::path::Path::new("static/").join(file))
+        .await
+        .ok()
 }
 
 #[get("/login")]

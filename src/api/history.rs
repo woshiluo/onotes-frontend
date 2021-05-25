@@ -1,6 +1,6 @@
-use notes::auth::{Auth, AuthUser};
-use notes::history::History;
-use rocket_contrib::json::Json;
+use notes_lib::auth::{Auth, AuthUser};
+use notes_lib::history::History;
+use rocket::serde::json::Json;
 use serde::{Deserialize, Serialize};
 
 use std::convert::TryFrom;
@@ -28,7 +28,7 @@ pub async fn delete_history(
 ) -> Json<NoteError<()>> {
     Json(
         conn.run(move |conn| -> NoteError<()> {
-            use notes::auth::AuthDelete;
+            use notes_lib::auth::AuthDelete;
             let data = data.into_inner();
             let auth = data.auth;
             let authuser = AuthUser::try_from((auth, &*conn))?;

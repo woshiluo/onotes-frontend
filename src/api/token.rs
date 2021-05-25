@@ -1,5 +1,5 @@
-use notes::auth::{Auth, AuthUser};
-use rocket_contrib::json::Json;
+use notes_lib::auth::{Auth, AuthUser};
+use rocket::serde::json::Json;
 use serde::Deserialize;
 
 use std::convert::TryFrom;

@@ -1,6 +1,6 @@
 use rocket_contrib::templates::Template;
 
-use notes::history::History;
+use notes_lib::history::History;
 
 use super::{PublicPost, TagPost};
 use crate::DbConn;
@@ -14,8 +14,8 @@ pub struct PublicHistory {
     pub markdown: String,
 }
 
-impl From<&notes::history::History> for PublicHistory {
-    fn from(history: &notes::history::History) -> PublicHistory {
+impl From<&notes_lib::history::History> for PublicHistory {
+    fn from(history: &notes_lib::history::History) -> PublicHistory {
         PublicHistory {
             id: history.get_id(),
             post_id: history.get_post_id(),
@@ -38,7 +38,7 @@ struct HistoryList {
 pub async fn list_history(conn: DbConn, id: u32) -> Template {
     let post_list = conn
         .run(|conn| -> Vec<TagPost> {
-            let list = notes::edge::Edge::get_to_list(&*conn, 1).unwrap();
+            let list = notes_lib::edge::Edge::get_to_list(&*conn, 1).unwrap();
             let mut post_list: Vec<TagPost> = vec![];
             for edge in list {
                 post_list.push(TagPost::from_id(&*conn, edge.get_to()));
@@ -78,7 +78,7 @@ struct HistoryContext {
 pub async fn show_history(conn: DbConn, id: u32, hid: u32) -> Template {
     let post_list = conn
         .run(|conn| -> Vec<TagPost> {
-            let list = notes::edge::Edge::get_to_list(&*conn, 1).unwrap();
+            let list = notes_lib::edge::Edge::get_to_list(&*conn, 1).unwrap();
             let mut post_list: Vec<TagPost> = vec![];
             for edge in list {
                 post_list.push(TagPost::from_id(&*conn, edge.get_to()));

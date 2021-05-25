@@ -19,22 +19,19 @@ use crate::api::token::get_token;
 use crate::api::user::{register_user, return_user, update_user};
 use crate::routes::catch::not_found;
 use crate::routes::history::{list_history, show_history};
-use crate::routes::index::{get_sw, index, login};
+use crate::routes::index::{get_sw, index, login, static_files};
 use crate::routes::post::{edit_post, view_post};
 
 #[database("db")]
 pub struct DbConn(diesel::MysqlConnection);
 
 #[launch]
-fn rocket() -> rocket::Rocket {
-    rocket::ignite()
-        .mount(
-            "/static",
-            rocket_contrib::serve::StaticFiles::from("static"),
-        )
+fn rocket() -> _ {
+    rocket::build()
         .mount(
             "/",
             routes![
+                static_files,
                 get_token,
                 register_user,
                 update_user,
@@ -60,5 +57,5 @@ fn rocket() -> rocket::Rocket {
         )
         .attach(Template::fairing())
         .attach(DbConn::fairing())
-        .register(catchers![not_found])
+        .register("/", catchers![not_found])
 }

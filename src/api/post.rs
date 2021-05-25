@@ -1,6 +1,6 @@
-use notes::auth::{Auth, AuthUser};
-use notes::post::Post;
-use rocket_contrib::json::Json;
+use notes_lib::auth::{Auth, AuthUser};
+use notes_lib::post::Post;
+use rocket::serde::json::Json;
 use serde::{Deserialize, Serialize};
 
 use std::convert::TryFrom;
@@ -22,7 +22,7 @@ pub struct NewPostData {
 pub async fn new_post(conn: DbConn, data: Json<NewPostData>) -> Json<NoteError<u32>> {
     Json(
         conn.run(move |conn| -> NoteError<u32> {
-            use notes::auth::AuthInsert;
+            use notes_lib::auth::AuthInsert;
             let data = data.into_inner();
             let auth = data.auth;
             let post = Post::from(data.data);
@@ -38,7 +38,7 @@ pub async fn new_post(conn: DbConn, data: Json<NewPostData>) -> Json<NoteError<u
 pub async fn update_post(conn: DbConn, data: Json<NewPostData>, id: u32) -> Json<NoteError<()>> {
     Json(
         conn.run(move |conn| -> NoteError<()> {
-            use notes::auth::AuthUpdate;
+            use notes_lib::auth::AuthUpdate;
             let data = data.into_inner();
             let auth = data.auth;
             let post = data.data;
@@ -75,7 +75,7 @@ pub struct DeletePostData {
 pub async fn delete_post(conn: DbConn, id: u32, data: Json<DeletePostData>) -> Json<NoteError<()>> {
     Json(
         conn.run(move |conn| -> NoteError<()> {
-            use notes::auth::AuthDelete;
+            use notes_lib::auth::AuthDelete;
 
             let data = data.into_inner();
             let auth = data.auth;
