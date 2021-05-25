@@ -12,7 +12,7 @@ use crate::DbConn;
 #[get("/api/post/<id>/to")]
 pub async fn get_to_list(conn: DbConn, id: u32) -> Json<NoteError<Vec<Edge>>> {
     Json(
-        conn.run(move |conn| -> NoteError<Vec<Edge>> { Ok(Edge::get_to_list(conn, id)?) })
+        conn.run(move |conn| -> NoteError<Vec<Edge>> { Edge::get_to_list(conn, id) })
             .await,
     )
 }
@@ -20,7 +20,7 @@ pub async fn get_to_list(conn: DbConn, id: u32) -> Json<NoteError<Vec<Edge>>> {
 #[get("/api/post/<id>/from")]
 pub async fn get_from_list(conn: DbConn, id: u32) -> Json<NoteError<Vec<Edge>>> {
     Json(
-        conn.run(move |conn| -> NoteError<Vec<Edge>> { Ok(Edge::get_from_list(conn, id)?) })
+        conn.run(move |conn| -> NoteError<Vec<Edge>> { Edge::get_from_list(conn, id) })
             .await,
     )
 }
@@ -46,12 +46,7 @@ pub async fn update_to_list(
                 post_list.push(Post::from_id(conn, id)?);
             }
             let authuser = AuthUser::try_from((auth, &*conn))?;
-            Ok(Edge::update_to_list(
-                conn,
-                &authuser,
-                id,
-                post_list.iter().collect(),
-            )?)
+            Edge::update_to_list(conn, &authuser, id, post_list.iter().collect())
         })
         .await,
     )
@@ -73,12 +68,7 @@ pub async fn update_from_list(
                 post_list.push(Post::from_id(conn, id)?);
             }
             let authuser = AuthUser::try_from((auth, &*conn))?;
-            Ok(Edge::update_from_list(
-                conn,
-                &authuser,
-                id,
-                post_list.iter().collect(),
-            )?)
+            Edge::update_from_list(conn, &authuser, id, post_list.iter().collect())
         })
         .await,
     )

@@ -11,7 +11,7 @@ use crate::DbConn;
 #[get("/api/post/<id>/history")]
 pub async fn get_history(conn: DbConn, id: u32) -> Json<NoteError<Vec<History>>> {
     Json(
-        conn.run(move |conn| -> NoteError<Vec<History>> { Ok(History::get_history(id, conn)?) })
+        conn.run(move |conn| -> NoteError<Vec<History>> { History::get_history(id, conn) })
             .await,
     )
 }

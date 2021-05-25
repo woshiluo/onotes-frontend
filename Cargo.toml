@@ -8,9 +8,6 @@ edition = "2018"
 
 [dependencies]
 
-# Rocket Webserver
-rocket = { git = "https://github.com/SergioBenitez/Rocket", features = [ "tls", "json" ] }
-rocket_contrib = { git = "https://github.com/SergioBenitez/Rocket",  features = ["diesel_mysql_pool", "tera_templates"] }
 
 # Notes
 notes-lib = { git = "https://git.nas.wsl/Onotes/notes-lib" }
@@ -28,3 +25,11 @@ pulldown-cmark = { git = "https://github.com/NovaOJ/pulldown-cmark", branch = "M
 
 # For time 
 chrono = "0.4.19"
+
+# Rocket Webserver
+rocket = { git = "https://github.com/SergioBenitez/Rocket", features = [ "tls", "json" ] }
+
+[dependencies.rocket_contrib]
+git = "https://github.com/SergioBenitez/Rocket"
+default-features = false
+features = ["tera_templates", "diesel_mysql_pool"]

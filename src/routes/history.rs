@@ -48,20 +48,22 @@ pub async fn list_history(conn: DbConn, id: u32) -> Template {
         })
         .await;
 
+    let title = conn
+        .run(move |conn| PublicPost::from_id(&*conn, id))
+        .await
+        .title
+        .clone();
+    let list = conn
+        .run(move |conn| -> Vec<History> { History::get_history(id, conn).unwrap() })
+        .await
+        .iter()
+        .map(PublicHistory::from)
+        .collect();
     let context = HistoryList {
         id,
         drawer: post_list,
-        title: conn
-            .run(move |conn| PublicPost::from_id(&*conn, id))
-            .await
-            .title
-            .clone(),
-        list: conn
-            .run(move |conn| -> Vec<History> { History::get_history(id, conn).unwrap() })
-            .await
-            .iter()
-            .map(|x| PublicHistory::from(x))
-            .collect(),
+        title,
+        list,
     };
 
     Template::render("histories", &context)
@@ -88,19 +90,21 @@ pub async fn show_history(conn: DbConn, id: u32, hid: u32) -> Template {
         })
         .await;
 
+    let title = conn
+        .run(move |conn| PublicPost::from_id(&*conn, id))
+        .await
+        .title
+        .clone();
+    let history = PublicHistory::from(
+        &conn
+            .run(move |conn| -> History { History::from_id(conn, hid).unwrap() })
+            .await,
+    );
     let context = HistoryContext {
         id,
         drawer: post_list,
-        title: conn
-            .run(move |conn| PublicPost::from_id(&*conn, id))
-            .await
-            .title
-            .clone(),
-        history: PublicHistory::from(
-            &conn
-                .run(move |conn| -> History { History::from_id(conn, hid).unwrap() })
-                .await,
-        ),
+        title,
+        history,
     };
 
     Template::render("history", &context)

@@ -28,7 +28,7 @@ pub async fn new_post(conn: DbConn, data: Json<NewPostData>) -> Json<NoteError<u
             let post = Post::from(data.data);
             let authuser = AuthUser::try_from((auth, &*conn))?;
 
-            Ok(post.insert(conn, &authuser)?)
+            post.insert(conn, &authuser)
         })
         .await,
     )
@@ -45,7 +45,7 @@ pub async fn update_post(conn: DbConn, data: Json<NewPostData>, id: u32) -> Json
             let post = Post::new(Some(id), post.title, Some(post.markdown));
             let authuser = AuthUser::try_from((auth, &*conn))?;
 
-            Ok(post.update(conn, &authuser)?)
+            post.update(conn, &authuser)
         })
         .await,
     )
@@ -81,7 +81,7 @@ pub async fn delete_post(conn: DbConn, id: u32, data: Json<DeletePostData>) -> J
             let auth = data.auth;
             let authuser = AuthUser::try_from((auth, &*conn))?;
 
-            Ok(Post::from_id(conn, id)?.delete(conn, &authuser)?)
+            Post::from_id(conn, id)?.delete(conn, &authuser)
         })
         .await,
     )
