@@ -1,4 +1,4 @@
-use rocket_contrib::templates::Template;
+use rocket_dyn_templates::Template;
 
 use notes_lib::history::History;
 

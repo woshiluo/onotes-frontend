@@ -3,14 +3,12 @@ pub mod routes;
 
 #[macro_use]
 extern crate rocket;
-#[macro_use]
-extern crate rocket_contrib;
 
 use std::collections::HashMap;
 
 use rocket::Request;
-use rocket_contrib::databases::diesel;
-use rocket_contrib::templates::Template;
+use rocket_dyn_templates::Template;
+use rocket_sync_db_pools::{database, diesel};
 
 use crate::api::edge::{get_from_list, get_to_list, update_from_list, update_to_list};
 use crate::api::history::{delete_history, get_history};

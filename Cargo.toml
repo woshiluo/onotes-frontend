@@ -29,7 +29,12 @@ chrono = "0.4.19"
 # Rocket Webserver
 rocket = { git = "https://github.com/SergioBenitez/Rocket", features = [ "tls", "json" ] }
 
-[dependencies.rocket_contrib]
+[dependencies.rocket_dyn_templates]
 git = "https://github.com/SergioBenitez/Rocket"
 default-features = false
-features = ["tera_templates", "diesel_mysql_pool"]
+features = ["tera"]
+
+[dependencies.rocket_sync_db_pools]
+git = "https://github.com/SergioBenitez/Rocket"
+default-features = false
+features = ["diesel_mysql_pool"]

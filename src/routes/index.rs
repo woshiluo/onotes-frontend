@@ -1,5 +1,5 @@
 use rocket::fs::NamedFile;
-use rocket_contrib::templates::Template;
+use rocket_dyn_templates::Template;
 
 use super::PublicPost;
 use crate::DbConn;
