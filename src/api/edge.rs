@@ -2,7 +2,7 @@ use notes_lib::auth::{Auth, AuthUser};
 use notes_lib::edge::Edge;
 use notes_lib::post::Post;
 use rocket::serde::json::Json;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
 use std::convert::TryFrom;
 

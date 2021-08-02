@@ -4,9 +4,6 @@ pub mod routes;
 #[macro_use]
 extern crate rocket;
 
-use std::collections::HashMap;
-
-use rocket::Request;
 use rocket_dyn_templates::Template;
 use rocket_sync_db_pools::{database, diesel};
 

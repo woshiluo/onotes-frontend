@@ -1,7 +1,7 @@
 use notes_lib::auth::{Auth, AuthUser};
 use notes_lib::history::History;
 use rocket::serde::json::Json;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
 use std::convert::TryFrom;
 
